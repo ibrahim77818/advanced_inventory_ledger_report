@@ -1,4 +1,4 @@
-<!-- Odoo Apps description page for advanced_inventory_ledger_report (Odoo 16.0). Inline styles only: apps.odoo.com strips <style> and <script> blocks. -->
+<!-- Odoo Apps description page for advanced_inventory_ledger_report (Odoo 17.0). Inline styles only: apps.odoo.com strips <style> and <script> blocks. -->
 <section style="max-width:1120px;margin:0 auto;padding:0 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;color:#2b2b33;">
 
 <!-- ============================== HERO ============================== -->
@@ -7,9 +7,9 @@
   <h1 style="font-size:40px;line-height:1.15;font-weight:700;margin:0 0 14px;color:#ffffff;">Advanced Inventory Ledger Report</h1>
   <p style="font-size:19px;line-height:1.55;max-width:760px;margin:0 0 24px;color:#ffffff;opacity:.95;">Opening stock, every receipt, delivery, return, transfer and adjustment, and closing stock &ndash; quantity and value, per product and warehouse, for any period. Computed by a single PostgreSQL query and delivered as an interactive list, pivot, Excel file or PDF.</p>
   <div>
-    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">Odoo 16.0</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">Odoo 17.0</span>
     <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">Community &amp; Enterprise</span>
-    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">17 automated tests</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">19 automated tests</span>
     <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">English &amp; Arabic</span>
     <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">Technical name: advanced_inventory_ledger_report</span>
     <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">LGPL-3</span>
@@ -21,7 +21,7 @@
   <div style="flex:1 1 220px;margin:8px;background:#f6f4f6;border-radius:14px;padding:20px 22px;"><div style="font-size:30px;font-weight:700;color:#714B67;">1 SQL query</div><div style="font-size:15px;color:#555;">per report run, whatever the number of products or warehouses</div></div>
   <div style="flex:1 1 220px;margin:8px;background:#eef6f6;border-radius:14px;padding:20px 22px;"><div style="font-size:30px;font-weight:700;color:#017E84;">8 movement types</div><div style="font-size:15px;color:#555;">purchases, sales, both kinds of returns, internal IN / OUT, adjustments</div></div>
   <div style="flex:1 1 220px;margin:8px;background:#f6f4f6;border-radius:14px;padding:20px 22px;"><div style="font-size:30px;font-weight:700;color:#714B67;">3 outputs</div><div style="font-size:15px;color:#555;">list / pivot / graph in Odoo, branded Excel, landscape PDF</div></div>
-  <div style="flex:1 1 220px;margin:8px;background:#eef6f6;border-radius:14px;padding:20px 22px;"><div style="font-size:30px;font-weight:700;color:#017E84;">17 tests</div><div style="font-size:15px;color:#555;">closing stock and value checked against Odoo&rsquo;s own figures</div></div>
+  <div style="flex:1 1 220px;margin:8px;background:#eef6f6;border-radius:14px;padding:20px 22px;"><div style="font-size:30px;font-weight:700;color:#017E84;">19 tests</div><div style="font-size:15px;color:#555;">closing stock and value checked against Odoo&rsquo;s own figures</div></div>
 </div>
 
 <!-- ============================== WHY ============================== -->
@@ -29,7 +29,7 @@
 <p style="font-size:16px;color:#555;margin:0 0 18px;">Accountants and warehouse managers ask the same question every month: <i>what did we have, what came in, what went out, and what is left?</i> Standard Odoo has the data but not the report.</p>
 <div style="display:flex;flex-wrap:wrap;margin:0 -10px;">
   <div style="flex:1 1 440px;margin:10px;border:1px solid #f1d6d6;background:#fff8f8;border-radius:14px;padding:24px 26px;">
-    <h3 style="font-size:19px;font-weight:700;color:#b33939;margin:0 0 12px;">In standard Odoo 16</h3>
+    <h3 style="font-size:19px;font-weight:700;color:#b33939;margin:0 0 12px;">In standard Odoo 17</h3>
     <ul style="font-size:15px;line-height:1.65;margin:0;padding-left:20px;color:#3a3a42;">
       <li>The <b>Stock</b> report shows quantities at one point in time; there is <b>no opening &rarr; closing bridge</b> for a period.</li>
       <li><b>Moves History</b> lists move lines one by one, with <b>no opening balance and no running balance</b>.</li>
@@ -69,7 +69,7 @@
 <div style="margin:44px 0 0;">
   <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Menus</div>
   <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Right where stock reports live</h3>
-  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">A single entry, <b>Inventory &rsaquo; Reporting &rsaquo; Inventory Ledger</b>, available to every <b>Inventory / User</b>. Nothing to configure after installation.</p>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">A single entry, <b>Inventory &rsaquo; Reporting &rsaquo; Inventory Ledger</b>. Like the rest of Odoo&rsquo;s Reporting menu it is visible to <b>Inventory / Administrator</b> users. Nothing to configure after installation.</p>
   <img src="ilr_01_menu.png" alt="Inventory Ledger entry in the Inventory Reporting menu" style="width:100%;max-width:760px;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
 </div>
 
@@ -91,7 +91,7 @@
 <div style="margin:44px 0 0;">
   <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 3</div>
   <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Pivot and graph out of the box</h3>
-  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">The same lines open in Odoo&rsquo;s native <b>pivot</b> &ndash; product categories down, warehouses across, with <b>Opening Qty</b>, <b>Total IN</b>, <b>Total OUT</b> and <b>Closing Qty</b> as measures &ndash; and in a <b>graph</b> of closing stock per warehouse, stacked by category. Re-group, swap axes, add value measures or download the pivot as usual.</p>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">The same lines open in Odoo&rsquo;s native <b>pivot</b> &ndash; product categories down, warehouses across, with <b>Opening Qty</b>, <b>Total IN</b>, <b>Total OUT</b> and <b>Closing Qty</b> as measures &ndash; and in a <b>graph</b> of closing stock per warehouse, stacked by category, with Odoo 17&rsquo;s <b>Sum</b> line on top. Re-group, swap axes, add value measures or download the pivot as usual.</p>
   <img src="ilr_04_pivot.png" alt="Pivot of opening, IN, OUT and closing quantity by category and warehouse" style="width:100%;margin-bottom:22px;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
   <img src="ilr_05_graph.png" alt="Bar graph of closing stock per warehouse stacked by product category" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
 </div>
@@ -164,7 +164,7 @@
   <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Fast opening stock</b><br/><span style="color:#555;">The default method reads only moves since the start date and rolls back today&rsquo;s stock. Use the Audit method to rebuild from full history and compare.</span></div>
   <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Inter-warehouse transfers</b><br/><span style="color:#555;">Internal OUT in the source, Internal IN in the destination, including transfers through a transit location. Moves within one warehouse do not inflate totals.</span></div>
   <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Sub-locations</b><br/><span style="color:#555;">Shelves, bins and any internal location below a warehouse are counted as that warehouse.</span></div>
-  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Units of measure</b><br/><span style="color:#555;">Quantities are converted to the product&rsquo;s unit of measure, so purchases in boxes and sales in units add up correctly.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Units of measure and over-receipts</b><br/><span style="color:#555;">The quantity actually done is converted to the product&rsquo;s unit of measure, so a receipt of 2 Dozens counts as 24 Units, and receiving more than ordered is counted in full.</span></div>
   <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Returns and adjustments</b><br/><span style="color:#555;">Customer and vendor returns get their own columns instead of reducing sales or purchases; inventory adjustments, scrap and production go to Adjust. / Prod.</span></div>
   <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Time zones</b><br/><span style="color:#555;">The period covers whole days in the user&rsquo;s time zone, so a delivery at 1 a.m. Riyadh time lands on the right day.</span></div>
   <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Archived products</b><br/><span style="color:#555;">Products archived later still appear for periods in which they moved. Consumables and services are left out, as they have no stock.</span></div>
@@ -173,14 +173,15 @@
 
 <!-- ============================== SECURITY ============================== -->
 <h2 style="font-size:28px;font-weight:700;margin:48px 0 6px;color:#2b2b33;">Security</h2>
-<p style="font-size:16px;color:#555;margin:0 0 18px;">Uses Odoo&rsquo;s Inventory groups; no new group to assign.</p>
+<p style="font-size:16px;color:#555;margin:0 0 18px;">Uses Odoo&rsquo;s own Inventory groups; no new group to assign.</p>
 <table style="width:100%;border-collapse:collapse;font-size:15px;">
   <thead><tr style="background:#714B67;color:#fff;"><th style="text-align:left;padding:10px 14px;">Who</th><th style="text-align:left;padding:10px 14px;">Sees / can do</th></tr></thead>
   <tbody>
-    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:30%;"><b>Inventory / User</b> and above</td><td style="padding:10px 14px;">The menu, the wizard, the views, Excel and PDF.</td></tr>
-    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;"><b>Each user</b></td><td style="padding:10px 14px;">Only their own report runs: record rules keep one user&rsquo;s results and downloads private from another&rsquo;s.</td></tr>
-    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;"><b>Multi-company</b></td><td style="padding:10px 14px;">A report can only include companies the user is allowed in; any other company is refused with an access error, and result lines are limited to the user&rsquo;s active companies.</td></tr>
-    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;"><b>Excel download</b></td><td style="padding:10px 14px;">Logged-in users only, after an access check on the report run.</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:30%;"><b>Inventory / Administrator</b></td><td style="padding:10px 14px;">The <b>Inventory &rsaquo; Reporting</b> menu entry, the wizard, the views, Excel and PDF.</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;"><b>Inventory / User</b></td><td style="padding:10px 14px;">Access rights to run the report and read its results. Odoo shows the Reporting menu to administrators only; add the menu to the user group if users should open it themselves.</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;"><b>Each user</b></td><td style="padding:10px 14px;">Only their own report runs: record rules keep one user&rsquo;s results and downloads private from another&rsquo;s.</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;"><b>Multi-company</b></td><td style="padding:10px 14px;">A report can only include companies the user is allowed in; any other company is refused with an access error, and result lines are limited to the user&rsquo;s active companies.</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;"><b>Excel download</b></td><td style="padding:10px 14px;">Logged-in users only, after an access check on the report run.</td></tr>
   </tbody>
 </table>
 
@@ -188,15 +189,15 @@
 <h2 style="font-size:28px;font-weight:700;margin:48px 0 6px;color:#2b2b33;">Technical details</h2>
 <table style="width:100%;border-collapse:collapse;font-size:15px;">
   <tbody>
-    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:30%;color:#777;">Odoo version</td><td style="padding:10px 14px;overflow-wrap:anywhere;">16.0, Community and Enterprise</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:30%;color:#777;">Odoo version</td><td style="padding:10px 14px;overflow-wrap:anywhere;">17.0, Community and Enterprise</td></tr>
     <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;color:#777;">Depends on</td><td style="padding:10px 14px;overflow-wrap:anywhere;"><code>stock</code>, <code>stock_account</code></td></tr>
-    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;color:#777;">Python dependency</td><td style="padding:10px 14px;overflow-wrap:anywhere;"><code>xlsxwriter</code> (already required by Odoo 16)</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;color:#777;">Python dependency</td><td style="padding:10px 14px;overflow-wrap:anywhere;"><code>xlsxwriter</code> (already required by Odoo 17)</td></tr>
     <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;color:#777;">Menu</td><td style="padding:10px 14px;overflow-wrap:anywhere;">Inventory &rsaquo; Reporting &rsaquo; Inventory Ledger</td></tr>
     <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;color:#777;">Settings</td><td style="padding:10px 14px;overflow-wrap:anywhere;">None. The PDF paper format &ldquo;Inventory Ledger (A4 Landscape)&rdquo; can be adjusted in Settings &rsaquo; Technical &rsaquo; Paper Format (developer mode).</td></tr>
     <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;color:#777;">Models</td><td style="padding:10px 14px;overflow-wrap:anywhere;"><code>inventory.ledger.wizard</code>, <code>inventory.ledger.line</code> (transient, purged after 24 hours), <code>inventory.ledger.engine</code> (SQL engine), <code>inventory.ledger.xlsx</code> (Excel generator)</td></tr>
     <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;color:#777;">Reports</td><td style="padding:10px 14px;overflow-wrap:anywhere;">QWeb PDF &ldquo;Inventory Ledger&rdquo;; Excel streamed from <code>/advanced_inventory_ledger_report/xlsx/&lt;id&gt;</code></td></tr>
     <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;color:#777;">Languages</td><td style="padding:10px 14px;overflow-wrap:anywhere;">English, Arabic (<code>i18n/ar.po</code>); <code>.pot</code> template included</td></tr>
-    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;color:#777;">Automated tests</td><td style="padding:10px 14px;overflow-wrap:anywhere;">17 <code>TransactionCase</code> tests: movement classification, closing quantity against <code>qty_available</code> (today and at a past date), closing value against the stock valuation, Fast and Audit methods agreeing over several periods, filters, running balance, Excel and PDF rendering, drill-down, right-to-left detection, and the security rules</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;color:#777;">Automated tests</td><td style="padding:10px 14px;overflow-wrap:anywhere;">19 <code>TransactionCase</code> tests: movement classification, over-receipts and receipts in another unit of measure, closing quantity against <code>qty_available</code> (today and at a past date), closing value against the stock valuation, Fast and Audit methods agreeing over several periods, filters, running balance, Excel and PDF rendering, drill-down, right-to-left detection, and the security rules</td></tr>
     <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;color:#777;">License</td><td style="padding:10px 14px;overflow-wrap:anywhere;">LGPL-3</td></tr>
   </tbody>
 </table>

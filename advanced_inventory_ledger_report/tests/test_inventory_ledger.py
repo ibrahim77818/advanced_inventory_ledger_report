@@ -71,7 +71,8 @@ class TestInventoryLedger(TransactionCase):
         })
         move._action_confirm()
         move._action_assign()
-        move.quantity_done = qty
+        move.quantity = qty
+        move.picked = True
         move._action_done()
         # back-date the move, its lines and its valuation layers
         move.write({'date': date})
@@ -189,6 +190,50 @@ class TestInventoryLedger(TransactionCase):
         wizard = self._run(product_ids=[(5, 0, 0)], categ_ids=[(6, 0, self.categ.ids)])
         self.assertIn(self.product, wizard.line_ids.product_id)
 
+    def test_09_over_receipt_counts_done_quantity(self):
+        """Odoo 17 keeps the done quantity in `quantity`; receiving more than the
+        demand must still be counted in full by the ledger."""
+        move = self.env['stock.move'].create({
+            'name': 'Over receipt',
+            'product_id': self.product.id,
+            'product_uom_qty': 10,
+            'product_uom': self.product.uom_id.id,
+            'location_id': self.supplier_loc.id,
+            'location_dest_id': self.wh2.lot_stock_id.id,
+            'company_id': self.company.id,
+        })
+        move._action_confirm()
+        move._action_assign()
+        move.quantity = 12
+        move.picked = True
+        move._action_done()
+        wizard = self._run(days_back=1, warehouse_ids=[(6, 0, self.wh2.ids)])
+        line = self._line(wizard, self.wh2)
+        self.assertQty(line.in_purchase_qty, 12)
+        self.assertQty(line.closing_qty, self.product.with_context(warehouse=self.wh2.id).qty_available)
+
+    def test_09b_receipt_in_other_uom(self):
+        """A receipt in Dozens of a product stocked in Units is counted in Units."""
+        dozen = self.env.ref('uom.product_uom_dozen')
+        move = self.env['stock.move'].create({
+            'name': 'Receipt in dozens',
+            'product_id': self.product.id,
+            'product_uom_qty': 2,
+            'product_uom': dozen.id,
+            'location_id': self.supplier_loc.id,
+            'location_dest_id': self.wh2.lot_stock_id.id,
+            'company_id': self.company.id,
+        })
+        move._action_confirm()
+        move._action_assign()
+        move.quantity = 2
+        move.picked = True
+        move._action_done()
+        wizard = self._run(days_back=1, warehouse_ids=[(6, 0, self.wh2.ids)])
+        line = self._line(wizard, self.wh2)
+        self.assertQty(line.in_purchase_qty, 24)
+        self.assertQty(line.closing_qty, self.product.with_context(warehouse=self.wh2.id).qty_available)
+
     # ------------------------------------------------------------------
     # Detailed ledger
     # ------------------------------------------------------------------
@@ -245,6 +290,7 @@ class TestInventoryLedger(TransactionCase):
     def test_23_rtl_follows_report_language(self):
         """Direction comes from the language the report is rendered in, not the user's default."""
         self.env['res.lang']._activate_lang('ar_001')
+        self.env['res.lang']._activate_lang('en_US')
         wizard = self._run()
         self.assertFalse(wizard.with_context(lang='en_US').get_filter_summary()['rtl'])
         self.assertTrue(wizard.with_context(lang='ar_001').get_filter_summary()['rtl'])

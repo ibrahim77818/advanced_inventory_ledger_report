@@ -33,6 +33,12 @@ internal/transit   in_internal                 out_internal
 inventory/prod...  in_other                    out_other
 =================  ==========================  ==========================
 
+Quantities
+----------
+Odoo 17 stores the done quantity in ``stock_move.quantity`` (move UoM); ``product_qty``
+keeps the original demand when more than the demand is processed. Legs therefore use
+``quantity`` converted to the product UoM: qty / move_uom.factor * product_uom.factor.
+
 Opening stock strategies
 ------------------------
 ``moves``   opening = SUM(legs before date_from). Reads the whole move
@@ -78,9 +84,11 @@ prod AS (
 legs AS (
     -- IN legs: destination inside the warehouse, source outside it
     SELECT m.id AS move_id, m.date, m.product_id, d.warehouse_id, d.company_id,
-           1 AS direction, m.product_qty AS qty, src.usage AS other_usage
+           1 AS direction, m.quantity / mu.factor * pu.factor AS qty, src.usage AS other_usage
       FROM stock_move m
       JOIN prod ON prod.product_id = m.product_id
+      JOIN uom_uom mu ON mu.id = m.product_uom
+      JOIN uom_uom pu ON pu.id = prod.uom_id
       JOIN loc d ON d.location_id = m.location_dest_id
       JOIN stock_location src ON src.id = m.location_id
  LEFT JOIN loc s ON s.location_id = m.location_id AND s.warehouse_id = d.warehouse_id
@@ -91,9 +99,11 @@ legs AS (
     UNION ALL
     -- OUT legs: source inside the warehouse, destination outside it
     SELECT m.id, m.date, m.product_id, s.warehouse_id, s.company_id,
-           -1, m.product_qty, dst.usage
+           -1, m.quantity / mu.factor * pu.factor, dst.usage
       FROM stock_move m
       JOIN prod ON prod.product_id = m.product_id
+      JOIN uom_uom mu ON mu.id = m.product_uom
+      JOIN uom_uom pu ON pu.id = prod.uom_id
       JOIN loc s ON s.location_id = m.location_id
       JOIN stock_location dst ON dst.id = m.location_dest_id
  LEFT JOIN loc d ON d.location_id = m.location_dest_id AND d.warehouse_id = s.warehouse_id

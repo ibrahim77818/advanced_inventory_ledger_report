@@ -65,7 +65,7 @@
                 <field name="in_value" sum="IN Value" optional="hide"/>
                 <field name="out_value" sum="OUT Value" optional="hide"/>
                 <field name="closing_value" sum="Closing Value" optional="show"/>
-                <field name="line_type" invisible="1"/>
+                <field name="line_type" column_invisible="1"/>
                 <button name="action_open_moves" type="object" icon="fa-search-plus"
                         title="Show stock moves" string="Moves"/>
             </tree>
@@ -117,7 +117,7 @@
                 <field name="warehouse_id"/>
                 <field name="product_id"/>
                 <field name="date"/>
-                <field name="line_type" invisible="1"/>
+                <field name="line_type" column_invisible="1"/>
                 <field name="movement_type"/>
                 <field name="reference" optional="show"/>
                 <field name="picking_id" optional="hide"/>
