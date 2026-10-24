@@ -1,0 +1,898 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* advanced_inventory_ledger_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-24 16:48+0000\n"
+"PO-Revision-Date: 2026-10-24 16:48+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.actions.report,print_report_name:advanced_inventory_ledger_report.action_report_inventory_ledger
+msgid "'Inventory Ledger - %s - %s' % (object.date_from, object.date_to)"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/wizard/inventory_ledger_wizard.py:0
+#, python-format
+msgid "... (+%s more)"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_wizard_form
+msgid ""
+"<i class=\"fa fa-info-circle me-1\" title=\"Info\"/>\n"
+"                    Transfers between two selected warehouses appear as <b>Internal OUT</b> in the\n"
+"                    source and <b>Internal IN</b> in the destination. Moves inside one warehouse\n"
+"                    (put-away, picking) do not affect its totals."
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_wizard_form
+msgid "<i class=\"fa fa-long-arrow-right mx-2\" title=\"to\"/>"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_document
+msgid "<span> — </span>"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_summary
+msgid "Adj./Prod."
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#, python-format
+msgid "Adjust. / Prod."
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__in_other_qty
+msgid "Adjust. / Prod. IN"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__out_other_qty
+msgid "Adjust. / Prod. OUT"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields.selection,name:advanced_inventory_ledger_report.selection__inventory_ledger_line__movement_type__in_other
+msgid "Adjustment / Production IN"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields.selection,name:advanced_inventory_ledger_report.selection__inventory_ledger_line__movement_type__out_other
+msgid "Adjustment / Production OUT"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/wizard/inventory_ledger_wizard.py:0
+#, python-format
+msgid "All"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_wizard_form
+msgid "All categories"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_wizard_form
+msgid "All storable products"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_wizard_form
+msgid "All warehouses"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields.selection,name:advanced_inventory_ledger_report.selection__inventory_ledger_wizard__opening_method__moves
+msgid "Audit (full move history)"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#, python-format
+msgid "Avg. Unit Cost"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_detailed
+#, python-format
+msgid "Balance"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_wizard_form
+msgid "Cancel"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_document
+#, python-format
+msgid "Categories"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#, python-format
+msgid "Category"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_summary
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_summary_tree
+#, python-format
+msgid "Closing"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_detailed
+#, python-format
+msgid "Closing Balance"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__closing_qty
+msgid "Closing Qty"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__closing_value
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_summary
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_summary_tree
+#, python-format
+msgid "Closing Value"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_wizard__company_ids
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_document
+#, python-format
+msgid "Companies"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__company_id
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_search
+#, python-format
+msgid "Company"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__create_uid
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_wizard__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__create_date
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_wizard__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_summary
+msgid "Cust. Ret."
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__in_return_qty
+#: model:ir.model.fields.selection,name:advanced_inventory_ledger_report.selection__inventory_ledger_line__movement_type__in_return
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_summary_tree
+#, python-format
+msgid "Customer Returns"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__date
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_detailed
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_search
+#, python-format
+msgid "Date"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields.selection,name:advanced_inventory_ledger_report.selection__inventory_ledger_line__report_type__detailed
+#: model:ir.model.fields.selection,name:advanced_inventory_ledger_report.selection__inventory_ledger_wizard__report_type__detailed
+msgid "Detailed"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__display_name
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_wizard__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_wizard_form
+msgid "Excel"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields.selection,name:advanced_inventory_ledger_report.selection__inventory_ledger_wizard__opening_method__quants
+msgid "Fast (roll back from current stock)"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,help:advanced_inventory_ledger_report.field_inventory_ledger_wizard__opening_method
+msgid ""
+"Fast: opening = stock on hand today minus everything that moved since the start date. Only recent moves are read.\n"
+"Audit: opening = sum of every done move before the start date. Independent of quants; use it to cross-check data integrity."
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_wizard__date_from
+msgid "From"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_summary
+msgid "GRAND TOTAL"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_search
+msgid "Group By"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_wizard__hide_zero
+msgid "Hide Zero Lines"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__id
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_detailed
+#, python-format
+msgid "IN"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__in_value
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_detailed
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_detailed_tree
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_summary_tree
+#, python-format
+msgid "IN Value"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_summary
+#, python-format
+msgid "INBOUND"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_search
+msgid "Inbound"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_summary
+msgid "Internal"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__in_internal_qty
+#: model:ir.model.fields.selection,name:advanced_inventory_ledger_report.selection__inventory_ledger_line__movement_type__in_internal
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_summary_tree
+#, python-format
+msgid "Internal IN"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__out_internal_qty
+#: model:ir.model.fields.selection,name:advanced_inventory_ledger_report.selection__inventory_ledger_line__movement_type__out_internal
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_summary_tree
+#, python-format
+msgid "Internal OUT"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#, python-format
+msgid "Internal Ref"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__default_code
+msgid "Internal Reference"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model:ir.actions.act_window,name:advanced_inventory_ledger_report.action_inventory_ledger_wizard
+#: model:ir.actions.report,name:advanced_inventory_ledger_report.action_report_inventory_ledger
+#: model:ir.ui.menu,name:advanced_inventory_ledger_report.menu_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_document
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_search
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_wizard_form
+#, python-format
+msgid "Inventory Ledger"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/wizard/inventory_ledger_wizard.py:0
+#, python-format
+msgid "Inventory Ledger %(type)s: %(start)s - %(end)s"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_detailed_graph
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_detailed_pivot
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_detailed_tree
+msgid "Inventory Ledger - Detailed"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_summary_graph
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_summary_pivot
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_summary_tree
+msgid "Inventory Ledger - Summary"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model,name:advanced_inventory_ledger_report.model_inventory_ledger_xlsx
+msgid "Inventory Ledger Excel Generator"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model,name:advanced_inventory_ledger_report.model_inventory_ledger_line
+msgid "Inventory Ledger Line"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model,name:advanced_inventory_ledger_report.model_inventory_ledger_wizard
+msgid "Inventory Ledger Report Wizard"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model,name:advanced_inventory_ledger_report.model_inventory_ledger_engine
+msgid "Inventory Ledger SQL Engine"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#, python-format
+msgid "Inventory Ledger — %s"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line____last_update
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_wizard____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__write_uid
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__write_date
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,help:advanced_inventory_ledger_report.field_inventory_ledger_wizard__warehouse_ids
+msgid "Leave empty for all warehouses of the selected companies."
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__line_type
+msgid "Line Type"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_wizard__line_ids
+msgid "Lines"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields.selection,name:advanced_inventory_ledger_report.selection__inventory_ledger_line__line_type__move
+msgid "Movement"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__movement_type
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_detailed
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_search
+#, python-format
+msgid "Movement Type"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_summary_tree
+msgid "Moves"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_line.py:0
+#, python-format
+msgid "Moves: %(product)s @ %(warehouse)s"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_search
+msgid "Negative Closing"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_search
+msgid "Negative Running Balance"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_document
+msgid "No stock movement or balance matches the selected filters."
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_detailed
+#, python-format
+msgid "OUT"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__out_value
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_detailed
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_detailed_tree
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_summary_tree
+#, python-format
+msgid "OUT Value"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_summary
+#, python-format
+msgid "OUTBOUND"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_detailed_tree
+msgid "Open"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_detailed_tree
+msgid "Open source document"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_summary
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_summary_tree
+#, python-format
+msgid "Opening"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model:ir.model.fields.selection,name:advanced_inventory_ledger_report.selection__inventory_ledger_line__line_type__opening
+#: model:ir.model.fields.selection,name:advanced_inventory_ledger_report.selection__inventory_ledger_line__movement_type__opening
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_detailed
+#, python-format
+msgid "Opening Balance"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__opening_qty
+msgid "Opening Qty"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_wizard__opening_method
+msgid "Opening Stock Method"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__opening_value
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_summary_tree
+#, python-format
+msgid "Opening Value"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_document
+#, python-format
+msgid "Opening method"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_summary_tree
+msgid "Other IN"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_summary_tree
+msgid "Other OUT"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_search
+msgid "Outbound"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_wizard_form
+msgid "PDF"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__partner_id
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_detailed
+#, python-format
+msgid "Partner"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_wizard_form
+msgid "Period"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_document
+#, python-format
+msgid "Printed on"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__product_id
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_summary
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_search
+#, python-format
+msgid "Product"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_wizard__categ_ids
+msgid "Product Categories"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__categ_id
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_search
+msgid "Product Category"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_wizard__product_ids
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_document
+#, python-format
+msgid "Products"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_summary
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_summary_tree
+msgid "Purchases"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__in_purchase_qty
+#: model:ir.model.fields.selection,name:advanced_inventory_ledger_report.selection__inventory_ledger_line__movement_type__in_purchase
+#, python-format
+msgid "Purchases / Receipts"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_summary
+msgid "Ref."
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__reference
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_detailed
+#, python-format
+msgid "Reference"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_wizard_form
+msgid "Report"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__report_type
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_wizard__report_type
+msgid "Report Type"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__balance_qty
+msgid "Running Balance"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_summary
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_summary_tree
+msgid "Sales"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__out_sale_qty
+#: model:ir.model.fields.selection,name:advanced_inventory_ledger_report.selection__inventory_ledger_line__movement_type__out_sale
+#, python-format
+msgid "Sales / Deliveries"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_wizard_form
+msgid "Scope"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/wizard/inventory_ledger_wizard.py:0
+#, python-format
+msgid "Select at least one company."
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_summary_tree
+msgid "Show stock moves"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,help:advanced_inventory_ledger_report.field_inventory_ledger_wizard__hide_zero
+msgid "Skip products with no opening stock and no movement in the period."
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__move_id
+msgid "Stock Move"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,help:advanced_inventory_ledger_report.field_inventory_ledger_wizard__categ_ids
+msgid "Sub-categories are included."
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_summary
+msgid "Subtotal"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields.selection,name:advanced_inventory_ledger_report.selection__inventory_ledger_line__line_type__summary
+#: model:ir.model.fields.selection,name:advanced_inventory_ledger_report.selection__inventory_ledger_line__report_type__summary
+#: model:ir.model.fields.selection,name:advanced_inventory_ledger_report.selection__inventory_ledger_wizard__report_type__summary
+msgid "Summary"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,help:advanced_inventory_ledger_report.field_inventory_ledger_wizard__report_type
+msgid ""
+"Summary: one line per product and warehouse.\n"
+"Detailed: every stock movement with a running balance."
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#, python-format
+msgid "TOTAL"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_detailed
+#, python-format
+msgid "TOTAL MOVEMENT VALUE"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/wizard/inventory_ledger_wizard.py:0
+#, python-format
+msgid "The start date must be before the end date."
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_wizard__date_to
+msgid "To"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__in_qty
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_summary
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_detailed_tree
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_summary_tree
+#, python-format
+msgid "Total IN"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__out_qty
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_summary
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_detailed_tree
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_summary_tree
+#, python-format
+msgid "Total OUT"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__picking_id
+msgid "Transfer"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__unit_cost
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_detailed
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_summary
+#, python-format
+msgid "Unit Cost"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__uom_id
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_summary
+#, python-format
+msgid "UoM"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_summary
+#, python-format
+msgid "VALUATION"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_summary
+msgid "Vend. Ret."
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__out_return_qty
+#: model:ir.model.fields.selection,name:advanced_inventory_ledger_report.selection__inventory_ledger_line__movement_type__out_return
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_summary_tree
+#, python-format
+msgid "Vendor Returns"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_wizard_form
+msgid "View"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__warehouse_id
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_search
+#, python-format
+msgid "Warehouse"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/models/inventory_ledger_xlsx.py:0
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_wizard__warehouse_ids
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.report_inventory_ledger_document
+#, python-format
+msgid "Warehouses"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_line_search
+msgid "With Movements"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#: model:ir.model.fields,field_description:advanced_inventory_ledger_report.field_inventory_ledger_line__wizard_id
+msgid "Wizard"
+msgstr ""
+
+#. module: advanced_inventory_ledger_report
+#. odoo-python
+#: code:addons/advanced_inventory_ledger_report/wizard/inventory_ledger_wizard.py:0
+#, python-format
+msgid "You are not allowed to report on: %s"
+msgstr ""

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_inventory_ledger_report"
+              name="Inventory Ledger"
+              parent="stock.menu_warehouse_report"
+              action="action_inventory_ledger_wizard"
+              groups="stock.group_stock_user"
+              sequence="5"/>
+</odoo>

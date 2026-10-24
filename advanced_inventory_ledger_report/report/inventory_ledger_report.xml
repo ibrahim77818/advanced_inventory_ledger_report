@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="paperformat_inventory_ledger" model="report.paperformat">
+        <field name="name">Inventory Ledger (A4 Landscape)</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="orientation">Landscape</field>
+        <!-- Room for the external layout header: logo + rule + 4-line company
+             address (as in the standard layout), so the body never slides under it. -->
+        <field name="margin_top">52</field>
+        <field name="margin_bottom">22</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">47</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="action_report_inventory_ledger" model="ir.actions.report">
+        <field name="name">Inventory Ledger</field>
+        <field name="model">inventory.ledger.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">advanced_inventory_ledger_report.report_inventory_ledger</field>
+        <field name="report_file">advanced_inventory_ledger_report.report_inventory_ledger</field>
+        <field name="print_report_name">'Inventory Ledger - %s - %s' % (object.date_from, object.date_to)</field>
+        <field name="paperformat_id" ref="paperformat_inventory_ledger"/>
+    </record>
+</odoo>

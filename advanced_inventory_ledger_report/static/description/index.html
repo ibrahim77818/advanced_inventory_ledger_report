@@ -1,0 +1,213 @@
+<!-- Odoo Apps description page for advanced_inventory_ledger_report (Odoo 16.0). Inline styles only: apps.odoo.com strips <style> and <script> blocks. -->
+<section style="max-width:1120px;margin:0 auto;padding:0 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;color:#2b2b33;">
+
+<!-- ============================== HERO ============================== -->
+<div style="background:linear-gradient(120deg,#017E84 0%,#3d6b78 45%,#714B67 100%);border-radius:18px;padding:48px 40px 40px;color:#ffffff;margin-top:12px;">
+  <div style="font-size:13px;letter-spacing:2px;text-transform:uppercase;opacity:.85;margin-bottom:10px;">Inventory &middot; Reporting &middot; Valuation</div>
+  <h1 style="font-size:40px;line-height:1.15;font-weight:700;margin:0 0 14px;color:#ffffff;">Advanced Inventory Ledger Report</h1>
+  <p style="font-size:19px;line-height:1.55;max-width:760px;margin:0 0 24px;color:#ffffff;opacity:.95;">Opening stock, every receipt, delivery, return, transfer and adjustment, and closing stock &ndash; quantity and value, per product and warehouse, for any period. Computed by a single PostgreSQL query and delivered as an interactive list, pivot, Excel file or PDF.</p>
+  <div>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">Odoo 16.0</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">Community &amp; Enterprise</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">17 automated tests</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">English &amp; Arabic</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">Technical name: advanced_inventory_ledger_report</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">LGPL-3</span>
+  </div>
+</div>
+
+<!-- ============================== KEY NUMBERS ============================== -->
+<div style="display:flex;flex-wrap:wrap;margin:28px -8px 8px;">
+  <div style="flex:1 1 220px;margin:8px;background:#f6f4f6;border-radius:14px;padding:20px 22px;"><div style="font-size:30px;font-weight:700;color:#714B67;">1 SQL query</div><div style="font-size:15px;color:#555;">per report run, whatever the number of products or warehouses</div></div>
+  <div style="flex:1 1 220px;margin:8px;background:#eef6f6;border-radius:14px;padding:20px 22px;"><div style="font-size:30px;font-weight:700;color:#017E84;">8 movement types</div><div style="font-size:15px;color:#555;">purchases, sales, both kinds of returns, internal IN / OUT, adjustments</div></div>
+  <div style="flex:1 1 220px;margin:8px;background:#f6f4f6;border-radius:14px;padding:20px 22px;"><div style="font-size:30px;font-weight:700;color:#714B67;">3 outputs</div><div style="font-size:15px;color:#555;">list / pivot / graph in Odoo, branded Excel, landscape PDF</div></div>
+  <div style="flex:1 1 220px;margin:8px;background:#eef6f6;border-radius:14px;padding:20px 22px;"><div style="font-size:30px;font-weight:700;color:#017E84;">17 tests</div><div style="font-size:15px;color:#555;">closing stock and value checked against Odoo&rsquo;s own figures</div></div>
+</div>
+
+<!-- ============================== WHY ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:40px 0 6px;color:#2b2b33;">Why this module</h2>
+<p style="font-size:16px;color:#555;margin:0 0 18px;">Accountants and warehouse managers ask the same question every month: <i>what did we have, what came in, what went out, and what is left?</i> Standard Odoo has the data but not the report.</p>
+<div style="display:flex;flex-wrap:wrap;margin:0 -10px;">
+  <div style="flex:1 1 440px;margin:10px;border:1px solid #f1d6d6;background:#fff8f8;border-radius:14px;padding:24px 26px;">
+    <h3 style="font-size:19px;font-weight:700;color:#b33939;margin:0 0 12px;">In standard Odoo 16</h3>
+    <ul style="font-size:15px;line-height:1.65;margin:0;padding-left:20px;color:#3a3a42;">
+      <li>The <b>Stock</b> report shows quantities at one point in time; there is <b>no opening &rarr; closing bridge</b> for a period.</li>
+      <li><b>Moves History</b> lists move lines one by one, with <b>no opening balance and no running balance</b>.</li>
+      <li>Receipts, sales, returns and adjustments are mixed together; you <b>split them by hand</b> in a spreadsheet.</li>
+      <li>A transfer between two warehouses is one line; seeing it as <b>OUT of one and IN to the other</b> takes manual work.</li>
+      <li>Stock valuation is company-wide, <b>not broken down per warehouse</b>.</li>
+      <li>List exports are raw columns: <b>no branded layout, no subtotals, no printable ledger</b>.</li>
+    </ul>
+  </div>
+  <div style="flex:1 1 440px;margin:10px;border:1px solid #cfe7e7;background:#f4fbfb;border-radius:14px;padding:24px 26px;">
+    <h3 style="font-size:19px;font-weight:700;color:#017E84;margin:0 0 12px;">With this module</h3>
+    <ul style="font-size:15px;line-height:1.65;margin:0;padding-left:20px;color:#3a3a42;">
+      <li><b>Opening Qty + Total IN &minus; Total OUT = Closing Qty</b> for every product and warehouse, for any dates.</li>
+      <li>A <b>Detailed</b> mode lists every movement with its <b>Running Balance</b>, starting from the opening row.</li>
+      <li>Each movement is classified automatically into <b>8 movement types</b>, each with its own column.</li>
+      <li>Inter-warehouse transfers appear as <b>Internal OUT</b> in the source and <b>Internal IN</b> in the destination.</li>
+      <li><b>Opening, IN, OUT and Closing Value</b> per warehouse, built from Odoo&rsquo;s stock valuation layers.</li>
+      <li>One click to a <b>styled Excel workbook</b> or a <b>landscape PDF</b> with your company header.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============================== HOW IT WORKS ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:40px 0 6px;color:#2b2b33;">How it works</h2>
+<p style="font-size:16px;color:#555;margin:0 0 18px;">Four steps, all from one dialog.</p>
+<div style="display:flex;flex-wrap:wrap;margin:0 -8px;">
+  <div style="flex:1 1 200px;margin:8px;border-radius:12px;border:1px solid #e3dde2;padding:18px;"><div style="width:34px;height:34px;border-radius:50%;background:#714B67;color:#fff;font-weight:700;text-align:center;line-height:34px;margin-bottom:10px;">1</div><div style="font-weight:700;margin-bottom:4px;">Open</div><div style="font-size:14px;color:#555;">Inventory &rsaquo; Reporting &rsaquo; Inventory Ledger.</div></div>
+  <div style="flex:1 1 200px;margin:8px;border-radius:12px;border:1px solid #e3dde2;padding:18px;"><div style="width:34px;height:34px;border-radius:50%;background:#714B67;color:#fff;font-weight:700;text-align:center;line-height:34px;margin-bottom:10px;">2</div><div style="font-weight:700;margin-bottom:4px;">Choose</div><div style="font-size:14px;color:#555;">Summary or Detailed, the period, and optionally warehouses, categories or products.</div></div>
+  <div style="flex:1 1 200px;margin:8px;border-radius:12px;border:1px solid #e3dde2;padding:18px;"><div style="width:34px;height:34px;border-radius:50%;background:#714B67;color:#fff;font-weight:700;text-align:center;line-height:34px;margin-bottom:10px;">3</div><div style="font-weight:700;margin-bottom:4px;">Compute</div><div style="font-size:14px;color:#555;">One PostgreSQL statement builds every line on the server, in a single pass.</div></div>
+  <div style="flex:1 1 200px;margin:8px;border-radius:12px;border:1px solid #cfe7e7;background:#f4fbfb;padding:18px;"><div style="width:34px;height:34px;border-radius:50%;background:#017E84;color:#fff;font-weight:700;text-align:center;line-height:34px;margin-bottom:10px;">4</div><div style="font-weight:700;margin-bottom:4px;">Read</div><div style="font-size:14px;color:#555;">Click <b>View</b>, <b>Excel</b> or <b>PDF</b>. Drill down from any line to its stock moves.</div></div>
+</div>
+
+<!-- ============================== FEATURES ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:44px 0 6px;color:#2b2b33;">Features</h2>
+<p style="font-size:16px;color:#555;margin:0;">Screenshots use demo data: <b>Red Sea Trading Co.</b> (SAR) with three warehouses &ndash; Jeddah Main, Riyadh DC and Dammam Hub &ndash; 12 products in three categories and 20 transfers over September and October 2026. The report period is 1&ndash;24 October 2026.</p>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Menus</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Right where stock reports live</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">A single entry, <b>Inventory &rsaquo; Reporting &rsaquo; Inventory Ledger</b>, available to every <b>Inventory / User</b>. Nothing to configure after installation.</p>
+  <img src="ilr_01_menu.png" alt="Inventory Ledger entry in the Inventory Reporting menu" style="width:100%;max-width:760px;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 1</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">One dialog for every question</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">Pick the <b>Report Type</b> (<b>Summary</b> or <b>Detailed</b>) and the <b>Period</b> &ndash; by default the first of the month to today. Narrow the <b>Scope</b> with <b>Warehouses</b>, <b>Product Categories</b> (sub-categories included) and <b>Products</b>, or leave them empty for everything. <b>Hide Zero Lines</b> skips products with no opening stock and no movement. The <b>Opening Stock Method</b> chooses between <b>Fast</b> (current stock rolled back to the start date) and <b>Audit</b> (sum of the full move history) &ndash; both give the same figures on healthy data, so you can use Audit to cross-check.</p>
+  <img src="ilr_02_wizard.png" alt="Inventory Ledger wizard with Summary report type and default period" style="width:100%;max-width:1000px;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 2</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Summary ledger: one line per product and warehouse</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">Click <b>View</b>. Each line shows <b>Opening Qty</b>, the inbound columns (<b>Purchases / Receipts</b>, <b>Internal IN</b>, <b>Total IN</b>), the outbound columns (<b>Sales / Deliveries</b>, <b>Internal OUT</b>, <b>Total OUT</b>), <b>Closing Qty</b> and <b>Closing Value</b>, with totals at the bottom. <b>Customer Returns</b>, <b>Vendor Returns</b>, adjustment columns and every value column are one click away in the optional-columns menu. Lines with no movement are greyed; negative closing stock turns red. Search filters include <b>With Movements</b>, <b>Inbound</b>, <b>Outbound</b> and <b>Negative Closing</b>, and you can group by <b>Company</b>, <b>Warehouse</b>, <b>Product Category</b>, <b>Product</b>, <b>Movement Type</b> or <b>Date</b>.</p>
+  <img src="ilr_03_summary_list.png" alt="Summary ledger list with opening, inbound, outbound and closing columns per warehouse" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+  <div style="background:#f4fbfb;border-left:4px solid #017E84;border-radius:8px;padding:16px 20px;font-size:15px;line-height:1.6;margin-top:14px;"><b>Worked example:</b> <i>Laptop 14&quot; Business</i> at Jeddah Main starts October with <b>35</b>. It receives <b>30</b> from a vendor, sells <b>12</b> and sends <b>8</b> to Dammam Hub (Internal OUT): 35 + 30 &minus; 20 = <b>45</b> closing. The same 8 units appear as Internal IN on the Dammam Hub line.</div>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 3</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Pivot and graph out of the box</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">The same lines open in Odoo&rsquo;s native <b>pivot</b> &ndash; product categories down, warehouses across, with <b>Opening Qty</b>, <b>Total IN</b>, <b>Total OUT</b> and <b>Closing Qty</b> as measures &ndash; and in a <b>graph</b> of closing stock per warehouse, stacked by category. Re-group, swap axes, add value measures or download the pivot as usual.</p>
+  <img src="ilr_04_pivot.png" alt="Pivot of opening, IN, OUT and closing quantity by category and warehouse" style="width:100%;margin-bottom:22px;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+  <img src="ilr_05_graph.png" alt="Bar graph of closing stock per warehouse stacked by product category" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 4</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Detailed ledger with running balance</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">Choose <b>Detailed</b> to get every movement in the period. Each product and warehouse starts with an <b>Opening Balance</b> row (highlighted), followed by its movements in date order with <b>Date</b>, <b>Movement Type</b>, <b>Reference</b>, <b>Partner</b>, <b>Total IN</b>, <b>Total OUT</b>, <b>Running Balance</b>, <b>Unit Cost</b>, <b>IN Value</b> and <b>OUT Value</b>. Here: Jeddah Main, Electronics only.</p>
+  <img src="ilr_07_wizard_detailed.png" alt="Wizard set to Detailed for Jeddah Main and the Electronics category" style="width:100%;max-width:1000px;margin-bottom:22px;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+  <img src="ilr_08_detailed_list.png" alt="Detailed ledger list with opening rows, movement types and running balance" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 5</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Drill down to the source documents</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">Every summary line has a <b>Moves</b> button that opens Odoo&rsquo;s <b>Moves History</b>, already filtered on that product, that warehouse and that period &ndash; here the receipt, delivery and transfer behind the laptop example above. In the detailed ledger, <b>Open</b> jumps straight to the transfer (or stock move) of the line.</p>
+  <img src="ilr_06_drilldown.png" alt="Moves History filtered on one product, one warehouse and the report period" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 6</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Excel workbook ready to send</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">The <b>Excel</b> button downloads an <b>.xlsx</b> built with xlsxwriter: company logo and name, the filters used, colour-coded <b>INBOUND</b>, <b>OUTBOUND</b> and <b>VALUATION</b> header bands, frozen headers, autofilter, quantities in the product unit-of-measure precision, values in your company currency, and a <b>TOTAL</b> row that uses <code>SUBTOTAL</code> so it follows the filter. The detailed workbook groups movements by product with opening and closing balance rows. Print setup is A4 landscape, fit to width, with page numbers.</p>
+  <img src="ilr_09_excel_summary.png" alt="Excel summary workbook with branded header, colour bands and totals" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 7</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Printable PDF with your company header</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">The <b>PDF</b> button prints an A4 landscape QWeb report inside your company&rsquo;s external layout. The summary is grouped by warehouse with a <b>Subtotal</b> per warehouse and a <b>GRAND TOTAL</b>; the detailed version shows one block per product with <b>Opening Balance</b>, movements and <b>Closing Balance</b>. Table headers repeat on every page and the page margins leave room for a full header with logo and address.</p>
+  <img src="ilr_10_pdf_summary.png" alt="PDF summary ledger grouped by warehouse with subtotals" style="width:100%;margin-bottom:22px;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+  <img src="ilr_11_pdf_detailed.png" alt="PDF detailed ledger with opening balance, movements and closing balance per product" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 8</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Fully translated into Arabic, right to left</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">The wizard, list, pivot, graph, search filters, PDF and Excel are translated into Arabic (<code>i18n/ar.po</code>). For Arabic users the PDF mirrors automatically with dates kept readable, and the Excel sheet opens right to left. A <code>.pot</code> template is included for other languages.</p>
+  <img src="ilr_12_ar_wizard.png" alt="Inventory Ledger wizard in Arabic" style="width:100%;max-width:1000px;margin-bottom:22px;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+  <img src="ilr_13_ar_summary_list.png" alt="Summary ledger list in Arabic, right to left" style="width:100%;margin-bottom:22px;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+  <img src="ilr_14_ar_pdf.png" alt="Arabic PDF summary ledger, right to left" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<!-- ============================== MOVEMENT TYPES ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:48px 0 6px;color:#2b2b33;">How movements are classified</h2>
+<p style="font-size:16px;color:#555;margin:0 0 18px;">A warehouse is every internal location under it. A done stock move counts as IN for a warehouse when it enters it from outside, and OUT when it leaves it. The type comes from the location on the other side of the move.</p>
+<div style="display:flex;flex-wrap:wrap;margin:0 -10px;font-size:15px;">
+  <div style="flex:1 1 440px;margin:10px;border:1px solid #e8e8ee;border-radius:14px;padding:22px 24px;">
+    <div style="font-size:13px;font-weight:700;color:#047857;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">Inbound</div>
+    <div style="margin-bottom:6px;"><span style="display:inline-block;min-width:190px;text-align:center;background:#d1fae5;color:#047857;border-radius:10px;padding:1px 8px;font-size:13px;margin-right:10px;">Purchases / Receipts</span> from a vendor location</div>
+    <div style="margin-bottom:6px;"><span style="display:inline-block;min-width:190px;text-align:center;background:#d1fae5;color:#047857;border-radius:10px;padding:1px 8px;font-size:13px;margin-right:10px;">Customer Returns</span> from a customer location</div>
+    <div style="margin-bottom:6px;"><span style="display:inline-block;min-width:190px;text-align:center;background:#dbeafe;color:#1d4ed8;border-radius:10px;padding:1px 8px;font-size:13px;margin-right:10px;">Internal IN</span> from another warehouse or transit</div>
+    <div style="margin-bottom:6px;"><span style="display:inline-block;min-width:190px;text-align:center;background:#fef3c7;color:#b45309;border-radius:10px;padding:1px 8px;font-size:13px;margin-right:10px;">Adjust. / Prod. IN</span> inventory gain, production, other</div>
+  </div>
+  <div style="flex:1 1 440px;margin:10px;border:1px solid #e8e8ee;border-radius:14px;padding:22px 24px;">
+    <div style="font-size:13px;font-weight:700;color:#b91c1c;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">Outbound</div>
+    <div style="margin-bottom:6px;"><span style="display:inline-block;min-width:190px;text-align:center;background:#fee2e2;color:#b91c1c;border-radius:10px;padding:1px 8px;font-size:13px;margin-right:10px;">Sales / Deliveries</span> to a customer location</div>
+    <div style="margin-bottom:6px;"><span style="display:inline-block;min-width:190px;text-align:center;background:#fee2e2;color:#b91c1c;border-radius:10px;padding:1px 8px;font-size:13px;margin-right:10px;">Vendor Returns</span> to a vendor location</div>
+    <div style="margin-bottom:6px;"><span style="display:inline-block;min-width:190px;text-align:center;background:#dbeafe;color:#1d4ed8;border-radius:10px;padding:1px 8px;font-size:13px;margin-right:10px;">Internal OUT</span> to another warehouse or transit</div>
+    <div style="margin-bottom:6px;"><span style="display:inline-block;min-width:190px;text-align:center;background:#fef3c7;color:#b45309;border-radius:10px;padding:1px 8px;font-size:13px;margin-right:10px;">Adjust. / Prod. OUT</span> inventory loss, scrap, consumption, other</div>
+  </div>
+</div>
+<div style="background:#f4fbfb;border-left:4px solid #017E84;border-radius:8px;padding:16px 20px;font-size:15px;line-height:1.6;margin-top:14px;"><b>Rules:</b> Closing Qty = Opening Qty + Total IN &minus; Total OUT. Moves inside one warehouse (put-away, picking, packing) are ignored because they do not change its stock. <b>Values</b> come from stock valuation layers: each movement at its own layer unit cost (unvalued moves such as internal transfers at the average cost on the end date), opening and closing at the average unit cost on the start and end dates. Run for all warehouses, the total <b>Closing Value</b> equals Odoo&rsquo;s stock valuation; per warehouse it is that valuation allocated at company average cost, since Odoo values stock per company.</div>
+
+<!-- ============================== CORNER CASES ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:48px 0 6px;color:#2b2b33;">Built for real-world corner cases</h2>
+<p style="font-size:16px;color:#555;margin:0 0 18px;">What happens in the situations that usually break stock reports.</p>
+<div style="display:flex;flex-wrap:wrap;margin:0 -8px;font-size:15px;line-height:1.55;">
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Large databases</b><br/><span style="color:#555;">One set-based SQL statement with CTEs and window functions, plus two indexes on stock moves and valuation layers (dropped on uninstall). No product-by-product loop in Python.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Fast opening stock</b><br/><span style="color:#555;">The default method reads only moves since the start date and rolls back today&rsquo;s stock. Use the Audit method to rebuild from full history and compare.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Inter-warehouse transfers</b><br/><span style="color:#555;">Internal OUT in the source, Internal IN in the destination, including transfers through a transit location. Moves within one warehouse do not inflate totals.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Sub-locations</b><br/><span style="color:#555;">Shelves, bins and any internal location below a warehouse are counted as that warehouse.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Units of measure</b><br/><span style="color:#555;">Quantities are converted to the product&rsquo;s unit of measure, so purchases in boxes and sales in units add up correctly.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Returns and adjustments</b><br/><span style="color:#555;">Customer and vendor returns get their own columns instead of reducing sales or purchases; inventory adjustments, scrap and production go to Adjust. / Prod.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Time zones</b><br/><span style="color:#555;">The period covers whole days in the user&rsquo;s time zone, so a delivery at 1 a.m. Riyadh time lands on the right day.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Archived products</b><br/><span style="color:#555;">Products archived later still appear for periods in which they moved. Consumables and services are left out, as they have no stock.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Negative stock</b><br/><span style="color:#555;">Negative closing quantities and running balances are shown in red and have their own search filters, so data issues stand out.</span></div>
+</div>
+
+<!-- ============================== SECURITY ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:48px 0 6px;color:#2b2b33;">Security</h2>
+<p style="font-size:16px;color:#555;margin:0 0 18px;">Uses Odoo&rsquo;s Inventory groups; no new group to assign.</p>
+<table style="width:100%;border-collapse:collapse;font-size:15px;">
+  <thead><tr style="background:#714B67;color:#fff;"><th style="text-align:left;padding:10px 14px;">Who</th><th style="text-align:left;padding:10px 14px;">Sees / can do</th></tr></thead>
+  <tbody>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:30%;"><b>Inventory / User</b> and above</td><td style="padding:10px 14px;">The menu, the wizard, the views, Excel and PDF.</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;"><b>Each user</b></td><td style="padding:10px 14px;">Only their own report runs: record rules keep one user&rsquo;s results and downloads private from another&rsquo;s.</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;"><b>Multi-company</b></td><td style="padding:10px 14px;">A report can only include companies the user is allowed in; any other company is refused with an access error, and result lines are limited to the user&rsquo;s active companies.</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;"><b>Excel download</b></td><td style="padding:10px 14px;">Logged-in users only, after an access check on the report run.</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================== TECHNICAL ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:48px 0 6px;color:#2b2b33;">Technical details</h2>
+<table style="width:100%;border-collapse:collapse;font-size:15px;">
+  <tbody>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:30%;color:#777;">Odoo version</td><td style="padding:10px 14px;overflow-wrap:anywhere;">16.0, Community and Enterprise</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;color:#777;">Depends on</td><td style="padding:10px 14px;overflow-wrap:anywhere;"><code>stock</code>, <code>stock_account</code></td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;color:#777;">Python dependency</td><td style="padding:10px 14px;overflow-wrap:anywhere;"><code>xlsxwriter</code> (already required by Odoo 16)</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;color:#777;">Menu</td><td style="padding:10px 14px;overflow-wrap:anywhere;">Inventory &rsaquo; Reporting &rsaquo; Inventory Ledger</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;color:#777;">Settings</td><td style="padding:10px 14px;overflow-wrap:anywhere;">None. The PDF paper format &ldquo;Inventory Ledger (A4 Landscape)&rdquo; can be adjusted in Settings &rsaquo; Technical &rsaquo; Paper Format (developer mode).</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;color:#777;">Models</td><td style="padding:10px 14px;overflow-wrap:anywhere;"><code>inventory.ledger.wizard</code>, <code>inventory.ledger.line</code> (transient, purged after 24 hours), <code>inventory.ledger.engine</code> (SQL engine), <code>inventory.ledger.xlsx</code> (Excel generator)</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;color:#777;">Reports</td><td style="padding:10px 14px;overflow-wrap:anywhere;">QWeb PDF &ldquo;Inventory Ledger&rdquo;; Excel streamed from <code>/advanced_inventory_ledger_report/xlsx/&lt;id&gt;</code></td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;color:#777;">Languages</td><td style="padding:10px 14px;overflow-wrap:anywhere;">English, Arabic (<code>i18n/ar.po</code>); <code>.pot</code> template included</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;color:#777;">Automated tests</td><td style="padding:10px 14px;overflow-wrap:anywhere;">17 <code>TransactionCase</code> tests: movement classification, closing quantity against <code>qty_available</code> (today and at a past date), closing value against the stock valuation, Fast and Audit methods agreeing over several periods, filters, running balance, Excel and PDF rendering, drill-down, right-to-left detection, and the security rules</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;color:#777;">License</td><td style="padding:10px 14px;overflow-wrap:anywhere;">LGPL-3</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================== CONTACT ============================== -->
+<div style="margin:52px 0 40px;background:linear-gradient(120deg,#714B67 0%,#017E84 100%);border-radius:18px;padding:36px 40px;color:#fff;">
+  <h2 style="font-size:26px;font-weight:700;margin:0 0 8px;color:#fff;">Support &amp; customization</h2>
+  <p style="font-size:16px;line-height:1.6;margin:0 0 20px;color:#fff;opacity:.95;">Questions, a demo, or an adaptation to your own process? Get in touch.</p>
+  <a href="mailto:ibrahim.yahiah@gmail.com" style="display:inline-block;background:#fff;color:#714B67;font-weight:700;text-decoration:none;border-radius:8px;padding:12px 22px;margin:0 12px 10px 0;">&#9993;&nbsp; ibrahim.yahiah@gmail.com</a>
+  <a href="https://www.linkedin.com/in/ibrahim-yahia" target="_blank" rel="noopener" style="display:inline-block;border:2px solid #fff;color:#fff;font-weight:700;text-decoration:none;border-radius:8px;padding:10px 22px;margin:0 0 10px 0;">LinkedIn: Ibrahim Yahia</a>
+  <p style="font-size:13px;margin:14px 0 0;opacity:.8;color:#fff;">Author: Ibrahim Yahia &middot; License: LGPL-3</p>
+</div>
+
+</section>

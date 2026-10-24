@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_inventory_ledger_styles">
+        <style>
+            .ilr { font-size: 8.5px; color: #2b2b2b; }
+            .ilr h2 { color: #714B67; font-weight: 700; font-size: 18px; margin: 0 0 2px 0; }
+            .ilr .ilr-sub { color: #6b7280; font-size: 10px; margin-bottom: 8px; }
+            .ilr .ilr-filters { width: 100%; border-collapse: collapse; margin-bottom: 10px;
+                                background: #f6f4f6; border-left: 3px solid #714B67; }
+            .ilr .ilr-filters td { padding: 3px 8px; font-size: 8.5px; vertical-align: top; }
+            .ilr .ilr-filters td.k { color: #714B67; font-weight: 700; white-space: nowrap; width: 9%; }
+            .ilr table.ilr-table { width: 100%; border-collapse: collapse; margin-bottom: 8px; }
+            .ilr table.ilr-table thead { display: table-header-group; }
+            .ilr table.ilr-table tr { page-break-inside: avoid; }
+            .ilr table.ilr-table th { background: #2F3E4E; color: #fff; font-weight: 600; padding: 4px 3px;
+                                      text-align: center; border: 1px solid #fff; vertical-align: middle; }
+            .ilr table.ilr-table th.band-in { background: #E3F1E8; color: #1E6B3A; }
+            .ilr table.ilr-table th.band-out { background: #FBE7E6; color: #9B2C2C; }
+            .ilr table.ilr-table th.band-val { background: #E8EEF8; color: #2B4C7E; }
+            .ilr table.ilr-table th.band-blank { background: transparent; border: none; }
+            .ilr table.ilr-table td { padding: 2.5px 3px; border-bottom: 1px solid #e6e6ea; }
+            .ilr table.ilr-table tbody tr.ilr-row:nth-child(even) td { background: #f8f8fb; }
+            .ilr td.num { text-align: right; white-space: nowrap; }
+            .ilr td.strong { font-weight: 700; }
+            .ilr td.muted { color: #9ca3af; }
+            .ilr tr.ilr-group td { background: #EFE8EE; color: #714B67; font-weight: 700; font-size: 9.5px;
+                                   border-top: 1.5px solid #714B67; padding: 4px; }
+            .ilr tr.ilr-opening td { font-style: italic; color: #555; background: #fafafa; }
+            .ilr tr.ilr-subtotal td { font-weight: 700; background: #F3F4F6; border-top: 1px solid #9AA5B1; }
+            .ilr tr.ilr-total td { font-weight: 700; background: #ECEFF3; border-top: 2px solid #2F3E4E;
+                                   border-bottom: 2px solid #2F3E4E; font-size: 9px; }
+            .ilr .neg { color: #b91c1c; }
+            .ilr .ltr { direction: ltr; unicode-bidi: embed; display: inline-block; }
+            .ilr.ilr-rtl .ilr-filters { border-left: none; border-right: 3px solid #714B67; }
+            .ilr .ilr-empty { padding: 24px; text-align: center; color: #6b7280; border: 1px dashed #d1d5db; }
+        </style>
+    </template>
+
+    <!-- Summary: one row per product / warehouse -->
+    <template id="report_inventory_ledger_summary">
+        <table class="ilr-table">
+            <thead>
+                <tr>
+                    <th class="band-blank" colspan="4"/>
+                    <th class="band-in" colspan="5">INBOUND</th>
+                    <th class="band-out" colspan="5">OUTBOUND</th>
+                    <th class="band-blank"/>
+                    <th class="band-val" colspan="2">VALUATION</th>
+                </tr>
+                <tr>
+                    <th style="width:6%">Ref.</th>
+                    <th style="width:17%">Product</th>
+                    <th style="width:4%">UoM</th>
+                    <th>Opening</th>
+                    <th>Purchases</th>
+                    <th>Cust. Ret.</th>
+                    <th>Internal</th>
+                    <th>Adj./Prod.</th>
+                    <th>Total IN</th>
+                    <th>Sales</th>
+                    <th>Vend. Ret.</th>
+                    <th>Internal</th>
+                    <th>Adj./Prod.</th>
+                    <th>Total OUT</th>
+                    <th>Closing</th>
+                    <th>Unit Cost</th>
+                    <th>Closing Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <t t-foreach="groups" t-as="group">
+                    <tr class="ilr-group"><td colspan="17" t-out="group['title']"/></tr>
+                    <t t-foreach="group['lines']" t-as="line">
+                        <tr class="ilr-row">
+                            <td t-out="line.product_id.default_code or ''"/>
+                            <td t-out="line.product_id.with_context(display_default_code=False).display_name"/>
+                            <td t-out="line.uom_id.name"/>
+                            <td class="num strong"><span t-field="line.opening_qty"/></td>
+                            <td class="num"><span t-field="line.in_purchase_qty"/></td>
+                            <td class="num"><span t-field="line.in_return_qty"/></td>
+                            <td class="num"><span t-field="line.in_internal_qty"/></td>
+                            <td class="num"><span t-field="line.in_other_qty"/></td>
+                            <td class="num strong"><span t-field="line.in_qty"/></td>
+                            <td class="num"><span t-field="line.out_sale_qty"/></td>
+                            <td class="num"><span t-field="line.out_return_qty"/></td>
+                            <td class="num"><span t-field="line.out_internal_qty"/></td>
+                            <td class="num"><span t-field="line.out_other_qty"/></td>
+                            <td class="num strong"><span t-field="line.out_qty"/></td>
+                            <td t-attf-class="num strong #{'neg' if line.closing_qty &lt; 0 else ''}"><span t-field="line.closing_qty"/></td>
+                            <td class="num"><span t-field="line.unit_cost"/></td>
+                            <td class="num"><span t-field="line.closing_value"/></td>
+                        </tr>
+                    </t>
+                    <tr class="ilr-subtotal">
+                        <td colspan="3">Subtotal</td>
+                        <t t-foreach="['opening_qty', 'in_purchase_qty', 'in_return_qty', 'in_internal_qty', 'in_other_qty', 'in_qty', 'out_sale_qty', 'out_return_qty', 'out_internal_qty', 'out_other_qty', 'out_qty', 'closing_qty']" t-as="fname">
+                            <td class="num" t-out="group['totals'][fname]" t-options="{'widget': 'float', 'precision': filters['qty_precision']}"/>
+                        </t>
+                        <td/>
+                        <td class="num" t-out="group['totals']['closing_value']" t-options="{'widget': 'float', 'precision': filters['value_precision']}"/>
+                    </tr>
+                </t>
+                <tr class="ilr-total">
+                    <td colspan="3">GRAND TOTAL</td>
+                    <t t-foreach="['opening_qty', 'in_purchase_qty', 'in_return_qty', 'in_internal_qty', 'in_other_qty', 'in_qty', 'out_sale_qty', 'out_return_qty', 'out_internal_qty', 'out_other_qty', 'out_qty', 'closing_qty']" t-as="fname">
+                        <td class="num" t-out="totals[fname]" t-options="{'widget': 'float', 'precision': filters['qty_precision']}"/>
+                    </t>
+                    <td/>
+                    <td class="num" t-out="totals['closing_value']" t-options="{'widget': 'float', 'precision': filters['value_precision']}"/>
+                </tr>
+            </tbody>
+        </table>
+    </template>
+
+    <!-- Detailed: one block per product / warehouse with running balance -->
+    <template id="report_inventory_ledger_detailed">
+        <table class="ilr-table">
+            <thead>
+                <tr>
+                    <th style="width:11%">Date</th>
+                    <th style="width:14%">Reference</th>
+                    <th style="width:17%">Partner</th>
+                    <th style="width:14%">Movement Type</th>
+                    <th>IN</th>
+                    <th>OUT</th>
+                    <th>Balance</th>
+                    <th>Unit Cost</th>
+                    <th>IN Value</th>
+                    <th>OUT Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <t t-foreach="groups" t-as="group">
+                    <tr class="ilr-group">
+                        <td colspan="10"><t t-out="group['title']"/> <span style="font-weight:400">(<t t-out="group['uom']"/>)</span></td>
+                    </tr>
+                    <tr class="ilr-opening">
+                        <td><span t-if="group['opening']" t-field="group['opening'].date" t-options="{'widget': 'date'}"/></td>
+                        <td colspan="3">Opening Balance</td>
+                        <td/>
+                        <td/>
+                        <td class="num strong" t-out="group['totals']['opening_qty']" t-options="{'widget': 'float', 'precision': filters['qty_precision']}"/>
+                        <td class="num"><span t-if="group['opening']" t-field="group['opening'].unit_cost"/></td>
+                        <td class="num" t-out="group['totals']['opening_value']" t-options="{'widget': 'float', 'precision': filters['value_precision']}"/>
+                        <td/>
+                    </tr>
+                    <t t-foreach="group['lines']" t-as="line">
+                        <tr class="ilr-row">
+                            <td><span t-field="line.date"/></td>
+                            <td t-out="line.reference or ''"/>
+                            <td t-out="line.partner_id.display_name or ''"/>
+                            <td><span t-field="line.movement_type"/></td>
+                            <td t-attf-class="num #{'' if line.in_qty else 'muted'}"><span t-field="line.in_qty"/></td>
+                            <td t-attf-class="num #{'' if line.out_qty else 'muted'}"><span t-field="line.out_qty"/></td>
+                            <td t-attf-class="num strong #{'neg' if line.balance_qty &lt; 0 else ''}"><span t-field="line.balance_qty"/></td>
+                            <td class="num"><span t-field="line.unit_cost"/></td>
+                            <td class="num"><span t-field="line.in_value"/></td>
+                            <td class="num"><span t-field="line.out_value"/></td>
+                        </tr>
+                    </t>
+                    <tr class="ilr-subtotal">
+                        <td colspan="4">Closing Balance</td>
+                        <td class="num" t-out="group['totals']['in_qty']" t-options="{'widget': 'float', 'precision': filters['qty_precision']}"/>
+                        <td class="num" t-out="group['totals']['out_qty']" t-options="{'widget': 'float', 'precision': filters['qty_precision']}"/>
+                        <td t-attf-class="num #{'neg' if group['totals']['closing_qty'] &lt; 0 else ''}" t-out="group['totals']['closing_qty']" t-options="{'widget': 'float', 'precision': filters['qty_precision']}"/>
+                        <td/>
+                        <td class="num" t-out="group['totals']['in_value']" t-options="{'widget': 'float', 'precision': filters['value_precision']}"/>
+                        <td class="num" t-out="group['totals']['out_value']" t-options="{'widget': 'float', 'precision': filters['value_precision']}"/>
+                    </tr>
+                </t>
+                <tr class="ilr-total">
+                    <td colspan="8">TOTAL MOVEMENT VALUE</td>
+                    <td class="num" t-out="totals['in_value']" t-options="{'widget': 'float', 'precision': filters['value_precision']}"/>
+                    <td class="num" t-out="totals['out_value']" t-options="{'widget': 'float', 'precision': filters['value_precision']}"/>
+                </tr>
+            </tbody>
+        </table>
+    </template>
+
+    <template id="report_inventory_ledger_document">
+        <t t-set="company" t-value="doc.company_ids[:1] or res_company"/>
+        <t t-call="web.external_layout">
+            <t t-set="filters" t-value="doc.get_filter_summary()"/>
+            <t t-set="groups" t-value="doc.get_report_groups()"/>
+            <t t-set="totals" t-value="doc.get_report_totals()"/>
+            <div t-attf-class="page ilr #{'ilr-rtl' if filters['rtl'] else ''}">
+                <t t-call="advanced_inventory_ledger_report.report_inventory_ledger_styles"/>
+                <h2>Inventory Ledger <span style="font-weight:400; color:#6b7280">&#8212; <t t-out="filters['report_type']"/></span></h2>
+                <div class="ilr-sub">
+                    <span class="ltr" t-out="filters['date_from']"/>
+                    <span> &#8212; </span>
+                    <span class="ltr" t-out="filters['date_to']"/>
+                </div>
+                <table class="ilr-filters">
+                    <tr>
+                        <td class="k">Companies</td><td t-out="filters['companies']"/>
+                        <td class="k">Warehouses</td><td t-out="filters['warehouses']"/>
+                        <td class="k">Opening method</td><td t-out="filters['opening_method']"/>
+                    </tr>
+                    <tr>
+                        <td class="k">Categories</td><td t-out="filters['categories']"/>
+                        <td class="k">Products</td><td t-out="filters['products']"/>
+                        <td class="k">Printed on</td><td><span class="ltr" t-out="filters['printed_on']"/></td>
+                    </tr>
+                </table>
+                <t t-if="not groups">
+                    <div class="ilr-empty">No stock movement or balance matches the selected filters.</div>
+                </t>
+                <t t-elif="doc.report_type == 'summary'">
+                    <t t-call="advanced_inventory_ledger_report.report_inventory_ledger_summary"/>
+                </t>
+                <t t-else="">
+                    <t t-call="advanced_inventory_ledger_report.report_inventory_ledger_detailed"/>
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_inventory_ledger">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="advanced_inventory_ledger_report.report_inventory_ledger_document"/>
+            </t>
+        </t>
+    </template>
+</odoo>
