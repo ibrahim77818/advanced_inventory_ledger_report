@@ -49,7 +49,7 @@ class InventoryLedgerWizard(models.TransientModel):
         string='Product Categories', help='Sub-categories are included.')
     product_ids = fields.Many2many(
         'product.product', 'inv_ledger_wiz_product_rel', 'wizard_id', 'product_id',
-        string='Products', domain="[('type', '=', 'product')]")
+        string='Products', domain="[('is_storable', '=', True)]")
     hide_zero = fields.Boolean(
         'Hide Zero Lines', default=True,
         help='Skip products with no opening stock and no movement in the period.')
@@ -134,9 +134,9 @@ class InventoryLedgerWizard(models.TransientModel):
                       type=dict(self._fields['report_type']._description_selection(self.env))[self.report_type],
                       start=self.date_from, end=self.date_to),
             'res_model': 'inventory.ledger.line',
-            'view_mode': 'tree,pivot,graph',
+            'view_mode': 'list,pivot,graph',
             'views': [
-                (self.env.ref(ref % (suffix, 'tree')).id, 'tree'),
+                (self.env.ref(ref % (suffix, 'tree')).id, 'list'),
                 (self.env.ref(ref % (suffix, 'pivot')).id, 'pivot'),
                 (self.env.ref(ref % (suffix, 'graph')).id, 'graph'),
             ],

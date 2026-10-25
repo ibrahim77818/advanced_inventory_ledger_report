@@ -1,4 +1,4 @@
-# Advanced Inventory Ledger Report (Odoo 16 · Community & Enterprise)
+# Advanced Inventory Ledger Report (Odoo 18 · Community & Enterprise)
 
 Inventory → Reporting → **Inventory Ledger**
 
@@ -34,13 +34,14 @@ advanced_inventory_ledger_report/
 
 | Concept | Rule |
 |---|---|
+| Products | goods with **Track Inventory** enabled (`is_storable`, Odoo 18) |
 | Warehouse scope | every `internal` location under the warehouse's view location |
 | IN leg | done move whose destination is in the warehouse and source is not |
 | OUT leg | done move whose source is in the warehouse and destination is not |
 | Moves inside one warehouse | ignored (put-away, pick, pack: net zero) |
 | WH1 → WH2 transfer | Internal OUT for WH1, Internal IN for WH2 |
 | Classification | by the other location's usage: supplier, customer, internal/transit, other (inventory loss, production, scrap) |
-| Quantities | `stock_move.product_qty` (already in the product's UoM) |
+| Quantities | done quantity `stock_move.quantity`, converted to the product's UoM (since Odoo 17 `product_qty` keeps the original demand after an over-receipt) |
 | Dates | period boundaries are whole days in the user's timezone, converted to UTC |
 
 ### Opening stock method

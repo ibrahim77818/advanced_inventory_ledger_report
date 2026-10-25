@@ -9,7 +9,7 @@ LEDGER_INDEXES = (
 )
 
 
-def uninstall_hook(cr, registry):
+def uninstall_hook(env):
     """Drop the helper indexes this module created on core tables."""
     for index in LEDGER_INDEXES:
-        cr.execute('DROP INDEX IF EXISTS %s' % index)
+        env.cr.execute('DROP INDEX IF EXISTS %s' % index)

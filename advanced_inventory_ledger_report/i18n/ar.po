@@ -98,8 +98,8 @@ msgstr "جميع الفئات"
 
 #. module: advanced_inventory_ledger_report
 #: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_wizard_form
-msgid "All storable products"
-msgstr "جميع المنتجات القابلة للتخزين"
+msgid "All products tracked in inventory"
+msgstr "جميع المنتجات المتتبعة في المخزون"
 
 #. module: advanced_inventory_ledger_report
 #: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_wizard_form

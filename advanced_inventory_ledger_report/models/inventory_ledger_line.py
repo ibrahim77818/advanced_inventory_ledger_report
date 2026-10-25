@@ -56,7 +56,7 @@ class InventoryLedgerLine(models.TransientModel):
     partner_id = fields.Many2one('res.partner', string='Partner', readonly=True)
     movement_type = fields.Selection(MOVEMENT_TYPES, readonly=True)
     balance_qty = fields.Float(
-        'Running Balance', digits=QTY_DIGITS, readonly=True, group_operator=False)
+        'Running Balance', digits=QTY_DIGITS, readonly=True, aggregator=False)
 
     # ---- quantities ------------------------------------------------------
     opening_qty = fields.Float('Opening Qty', digits=QTY_DIGITS, readonly=True)
@@ -73,7 +73,7 @@ class InventoryLedgerLine(models.TransientModel):
     closing_qty = fields.Float('Closing Qty', digits=QTY_DIGITS, readonly=True)
 
     # ---- valuation -------------------------------------------------------
-    unit_cost = fields.Float('Unit Cost', digits=VALUE_DIGITS, readonly=True, group_operator='avg')
+    unit_cost = fields.Float('Unit Cost', digits=VALUE_DIGITS, readonly=True, aggregator='avg')
     opening_value = fields.Float('Opening Value', digits=VALUE_DIGITS, readonly=True)
     in_value = fields.Float('IN Value', digits=VALUE_DIGITS, readonly=True)
     out_value = fields.Float('OUT Value', digits=VALUE_DIGITS, readonly=True)
