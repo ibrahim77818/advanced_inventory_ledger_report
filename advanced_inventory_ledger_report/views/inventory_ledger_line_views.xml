@@ -21,7 +21,7 @@
                         domain="[('line_type', '=', 'summary'), ('closing_qty', '&lt;', 0)]"/>
                 <filter name="negative_balance" string="Negative Running Balance"
                         domain="[('line_type', '=', 'move'), ('balance_qty', '&lt;', 0)]"/>
-                <group expand="0" string="Group By">
+                <group>
                     <filter name="groupby_company" string="Company" context="{'group_by': 'company_id'}"
                             groups="base.group_multi_company"/>
                     <filter name="groupby_warehouse" string="Warehouse" context="{'group_by': 'warehouse_id'}"/>
@@ -40,7 +40,7 @@
         <field name="model">inventory.ledger.line</field>
         <field name="priority">20</field>
         <field name="arch" type="xml">
-            <tree string="Inventory Ledger - Summary" create="0" edit="0" delete="0"
+            <list string="Inventory Ledger - Summary" create="0" edit="0" delete="0"
                   decoration-danger="closing_qty &lt; 0" decoration-muted="in_qty == 0 and out_qty == 0">
                 <field name="company_id" groups="base.group_multi_company" optional="show"/>
                 <field name="warehouse_id"/>
@@ -65,10 +65,10 @@
                 <field name="in_value" sum="IN Value" optional="hide"/>
                 <field name="out_value" sum="OUT Value" optional="hide"/>
                 <field name="closing_value" sum="Closing Value" optional="show"/>
-                <field name="line_type" invisible="1"/>
+                <field name="line_type" column_invisible="1"/>
                 <button name="action_open_moves" type="object" icon="fa-search-plus"
                         title="Show stock moves" string="Moves"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -110,14 +110,14 @@
         <field name="model">inventory.ledger.line</field>
         <field name="priority">21</field>
         <field name="arch" type="xml">
-            <tree string="Inventory Ledger - Detailed" create="0" edit="0" delete="0"
+            <list string="Inventory Ledger - Detailed" create="0" edit="0" delete="0"
                   decoration-info="line_type == 'opening'" decoration-bf="line_type == 'opening'"
                   decoration-danger="balance_qty &lt; 0">
                 <field name="company_id" groups="base.group_multi_company" optional="hide"/>
                 <field name="warehouse_id"/>
                 <field name="product_id"/>
                 <field name="date"/>
-                <field name="line_type" invisible="1"/>
+                <field name="line_type" column_invisible="1"/>
                 <field name="movement_type"/>
                 <field name="reference" optional="show"/>
                 <field name="picking_id" optional="hide"/>
@@ -132,7 +132,7 @@
                 <field name="out_value" sum="OUT Value" optional="show"/>
                 <button name="action_open_moves" type="object" icon="fa-external-link"
                         title="Open source document" string="Open"/>
-            </tree>
+            </list>
         </field>
     </record>
 

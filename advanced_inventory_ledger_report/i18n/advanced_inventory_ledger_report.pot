@@ -93,7 +93,7 @@ msgstr ""
 
 #. module: advanced_inventory_ledger_report
 #: model_terms:ir.ui.view,arch_db:advanced_inventory_ledger_report.view_inventory_ledger_wizard_form
-msgid "All storable products"
+msgid "All products tracked in inventory"
 msgstr ""
 
 #. module: advanced_inventory_ledger_report

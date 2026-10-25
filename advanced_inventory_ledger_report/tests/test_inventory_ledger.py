@@ -35,18 +35,20 @@ class TestInventoryLedger(TransactionCase):
         cls.categ = cls.env['product.category'].create({
             'name': 'Ledger Test Category',
             'property_cost_method': 'standard',
-            'property_valuation': 'manual_periodic',
+            'property_valuation': 'periodic',
         })
         cls.product = cls.env['product.product'].create({
             'name': 'Ledger Test Product',
             'default_code': 'LTP-001',
-            'type': 'product',
+            'type': 'consu',
+            'is_storable': True,
             'categ_id': cls.categ.id,
             'standard_price': 10.0,
         })
         cls.product_idle = cls.env['product.product'].create({
             'name': 'Ledger Idle Product',
-            'type': 'product',
+            'type': 'consu',
+            'is_storable': True,
             'categ_id': cls.categ.id,
             'standard_price': 5.0,
         })
@@ -61,7 +63,6 @@ class TestInventoryLedger(TransactionCase):
     @classmethod
     def _do_move(cls, src, dst, qty, date):
         move = cls.env['stock.move'].create({
-            'name': 'Ledger test move',
             'product_id': cls.product.id,
             'product_uom_qty': qty,
             'product_uom': cls.product.uom_id.id,
@@ -71,16 +72,13 @@ class TestInventoryLedger(TransactionCase):
         })
         move._action_confirm()
         move._action_assign()
-        move.quantity_done = qty
+        move.quantity = qty
+        move.picked = True
         move._action_done()
-        # back-date the move, its lines and its valuation layers
+        # back-date the move and its lines (Odoo 19 values moves directly, by move date)
         move.write({'date': date})
         move.move_line_ids.write({'date': date})
         cls.env.flush_all()
-        cls.env.cr.execute(
-            'UPDATE stock_valuation_layer SET create_date = %s WHERE stock_move_id = %s',
-            [date, move.id])
-        cls.env['stock.valuation.layer'].invalidate_model(['create_date'])
         return move
 
     # ------------------------------------------------------------------
@@ -133,24 +131,52 @@ class TestInventoryLedger(TransactionCase):
         """Closing per warehouse == product.qty_available in that warehouse."""
         wizard = self._run()
         for warehouse in (self.wh1, self.wh2):
-            on_hand = self.product.with_context(warehouse=warehouse.id).qty_available
+            on_hand = self.product.with_context(warehouse_id=warehouse.id).qty_available
             self.assertQty(self._line(wizard, warehouse).closing_qty, on_hand)
         self.assertQty(sum(wizard.line_ids.mapped('closing_qty')), self.product.qty_available)
 
     def test_03_closing_value_matches_valuation(self):
-        """Company-wide closing value == live stock valuation (sum of SVL)."""
+        """Company-wide closing value == Odoo 19's own stock valuation (total_value)."""
         wizard = self._run()
         product = self.product.with_company(self.company)
-        self.assertQty(sum(wizard.line_ids.mapped('closing_value')), product.value_svl)
-        self.assertQty(product.value_svl, 900.0)
+        self.assertQty(sum(wizard.line_ids.mapped('closing_value')), product.total_value)
+        self.assertQty(product.total_value, 900.0)
         self.assertQty(self._line(wizard, self.wh1).unit_cost, 10.0)
+
+    def test_03b_cost_change_valued_at_its_date(self):
+        """Standard cost 10 (recorded 30 days ago) raised to 15 three days ago: each
+        period is valued at the cost of its own dates, exactly like Odoo 19's own
+        valuation at a date (product.total_value with to_date)."""
+        now = fields.Datetime.now()
+        # Odoo 19 keeps price history in product.value; the initial cost given at
+        # product creation is not recorded, so record it as a price change would.
+        self.env['product.value'].create({
+            'product_id': self.product.id, 'value': 10.0,
+            'date': now - timedelta(days=30), 'company_id': self.company.id,
+        })
+        self.product.with_context(valuation_date=now - timedelta(days=3)).standard_price = 15.0
+        product = self.product.with_company(self.company)
+
+        current = self._run()
+        start, end = current._get_utc_bounds()
+        self.assertQty(sum(current.line_ids.mapped('opening_value')),
+                       product.with_context(to_date=start - timedelta(seconds=1)).total_value)
+        self.assertQty(sum(current.line_ids.mapped('opening_value')), 100 * 10.0)
+        self.assertQty(sum(current.line_ids.mapped('closing_value')), product.total_value)
+        self.assertQty(sum(current.line_ids.mapped('closing_value')), 90 * 15.0)
+
+        past = self._run(days_back=20, date_to=self.today - timedelta(days=6))
+        _start, end = past._get_utc_bounds()
+        self.assertQty(sum(past.line_ids.mapped('closing_value')),
+                       product.with_context(to_date=end).total_value)
+        self.assertQty(sum(past.line_ids.mapped('closing_value')), 100 * 10.0)
 
     def test_04_historical_period_matches_to_date(self):
         """A period ending in the past matches qty_available(to_date=...)."""
         wizard = self._run(days_back=20, date_to=self.today - timedelta(days=6))
         _start, end = wizard._get_utc_bounds()
         wh1 = self._line(wizard, self.wh1)
-        expected = self.product.with_context(warehouse=self.wh1.id, to_date=end).qty_available
+        expected = self.product.with_context(warehouse_id=self.wh1.id, to_date=end).qty_available
         self.assertQty(wh1.opening_qty, 0)
         self.assertQty(wh1.in_purchase_qty, 100)
         self.assertQty(wh1.closing_qty, expected)
@@ -188,6 +214,48 @@ class TestInventoryLedger(TransactionCase):
         self.product.categ_id = child
         wizard = self._run(product_ids=[(5, 0, 0)], categ_ids=[(6, 0, self.categ.ids)])
         self.assertIn(self.product, wizard.line_ids.product_id)
+
+    def test_09_over_receipt_counts_done_quantity(self):
+        """Odoo 17 keeps the done quantity in `quantity`; receiving more than the
+        demand must still be counted in full by the ledger."""
+        move = self.env['stock.move'].create({
+            'product_id': self.product.id,
+            'product_uom_qty': 10,
+            'product_uom': self.product.uom_id.id,
+            'location_id': self.supplier_loc.id,
+            'location_dest_id': self.wh2.lot_stock_id.id,
+            'company_id': self.company.id,
+        })
+        move._action_confirm()
+        move._action_assign()
+        move.quantity = 12
+        move.picked = True
+        move._action_done()
+        wizard = self._run(days_back=1, warehouse_ids=[(6, 0, self.wh2.ids)])
+        line = self._line(wizard, self.wh2)
+        self.assertQty(line.in_purchase_qty, 12)
+        self.assertQty(line.closing_qty, self.product.with_context(warehouse_id=self.wh2.id).qty_available)
+
+    def test_09b_receipt_in_other_uom(self):
+        """A receipt in Dozens of a product stocked in Units is counted in Units."""
+        dozen = self.env.ref('uom.product_uom_dozen')
+        move = self.env['stock.move'].create({
+            'product_id': self.product.id,
+            'product_uom_qty': 2,
+            'product_uom': dozen.id,
+            'location_id': self.supplier_loc.id,
+            'location_dest_id': self.wh2.lot_stock_id.id,
+            'company_id': self.company.id,
+        })
+        move._action_confirm()
+        move._action_assign()
+        move.quantity = 2
+        move.picked = True
+        move._action_done()
+        wizard = self._run(days_back=1, warehouse_ids=[(6, 0, self.wh2.ids)])
+        line = self._line(wizard, self.wh2)
+        self.assertQty(line.in_purchase_qty, 24)
+        self.assertQty(line.closing_qty, self.product.with_context(warehouse_id=self.wh2.id).qty_available)
 
     # ------------------------------------------------------------------
     # Detailed ledger
@@ -245,6 +313,7 @@ class TestInventoryLedger(TransactionCase):
     def test_23_rtl_follows_report_language(self):
         """Direction comes from the language the report is rendered in, not the user's default."""
         self.env['res.lang']._activate_lang('ar_001')
+        self.env['res.lang']._activate_lang('en_US')
         wizard = self._run()
         self.assertFalse(wizard.with_context(lang='en_US').get_filter_summary()['rtl'])
         self.assertTrue(wizard.with_context(lang='ar_001').get_filter_summary()['rtl'])
@@ -256,12 +325,14 @@ class TestInventoryLedger(TransactionCase):
         other = self.env['res.company'].create({'name': 'Ledger Other Co'})
         user = new_test_user(self.env, login='ledger_stock_user', groups='stock.group_stock_user',
                              company_id=self.company.id, company_ids=[(6, 0, self.company.ids)])
-        wizard = self.env['inventory.ledger.wizard'].with_user(user).create({
-            'date_from': self.today - timedelta(days=7),
-            'date_to': self.today,
-            'company_ids': [(6, 0, (self.company | other).ids)],
-        })
+        # Odoo 19 already refuses linking a company the user cannot read when the
+        # wizard is created; older versions stop at the engine's own check.
         with self.assertRaises(AccessError):
+            wizard = self.env['inventory.ledger.wizard'].with_user(user).create({
+                'date_from': self.today - timedelta(days=7),
+                'date_to': self.today,
+                'company_ids': [(6, 0, (self.company | other).ids)],
+            })
             wizard._compute_ledger()
 
     def test_31_user_sees_only_own_runs(self):

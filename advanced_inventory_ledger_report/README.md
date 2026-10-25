@@ -1,4 +1,4 @@
-# Advanced Inventory Ledger Report (Odoo 16 · Community & Enterprise)
+# Advanced Inventory Ledger Report (Odoo 19 · Community & Enterprise)
 
 Inventory → Reporting → **Inventory Ledger**
 
@@ -34,13 +34,14 @@ advanced_inventory_ledger_report/
 
 | Concept | Rule |
 |---|---|
+| Products | goods with **Track Inventory** enabled (`is_storable`) |
 | Warehouse scope | every `internal` location under the warehouse's view location |
 | IN leg | done move whose destination is in the warehouse and source is not |
 | OUT leg | done move whose source is in the warehouse and destination is not |
 | Moves inside one warehouse | ignored (put-away, pick, pack: net zero) |
 | WH1 → WH2 transfer | Internal OUT for WH1, Internal IN for WH2 |
 | Classification | by the other location's usage: supplier, customer, internal/transit, other (inventory loss, production, scrap) |
-| Quantities | `stock_move.product_qty` (already in the product's UoM) |
+| Quantities | done quantity `stock_move.quantity`, converted to the product's UoM with Odoo 19's absolute factors (`qty × move_uom.factor ÷ product_uom.factor`) |
 | Dates | period boundaries are whole days in the user's timezone, converted to UTC |
 
 ### Opening stock method
@@ -52,16 +53,22 @@ advanced_inventory_ledger_report/
 
 ### Valuation
 
-Taken from `stock_valuation_layer` (company level):
+Odoo 19 removed `stock.valuation.layer`. The ledger now prices lines with Odoo 19's
+own valuation engine, in one batch per company after the quantity query:
 
-* Move value = quantity × that move's layer unit cost; unvalued moves (internal
+* Move value = quantity × the move's own unit cost (`|stock_move.value| / quantity`)
+  for moves Odoo values (`is_in` / `is_out`); moves Odoo does not value (internal
   transfers) use the average cost at the end date.
-* Opening / closing value = quantity × average unit cost (Σvalue / Σqty of layers)
-  at the start / end date.
+* Opening / closing value = quantity × `product.avg_cost` computed by Odoo with
+  `to_date` = just before the start date / the end date (standard, average and FIFO
+  costing, price changes and landed costs are Odoo's responsibility).
 
-Run company-wide, total closing value equals the Stock Valuation report. Per
-warehouse it is an allocation at company average cost, because Odoo values
-stock per company, not per location.
+Run company-wide, total closing value equals `product.total_value` at the end date.
+Per warehouse it is that value allocated by quantity, which is also how Odoo 19
+values a warehouse.
+
+Odoo 19 values a receipt from its purchase order or vendor bill, otherwise from
+the product cost; the move's own `price_unit` is no longer used for valuation.
 
 ## Languages and layout
 
@@ -75,9 +82,8 @@ stock per company, not per location.
 
 ## Performance notes
 
-* The module adds a partial index `stock_move (product_id, date) WHERE state = 'done'`
-  and `stock_valuation_layer (product_id, company_id, create_date)`; both are dropped
-  on uninstall.
+* The module adds a partial index `stock_move (product_id, date) WHERE state = 'done'`,
+  dropped on uninstall.
 * Results live in a transient table, isolated per user by record rules and purged
   after 24 hours.
 

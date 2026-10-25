@@ -56,7 +56,7 @@ class InventoryLedgerLine(models.TransientModel):
     partner_id = fields.Many2one('res.partner', string='Partner', readonly=True)
     movement_type = fields.Selection(MOVEMENT_TYPES, readonly=True)
     balance_qty = fields.Float(
-        'Running Balance', digits=QTY_DIGITS, readonly=True, group_operator=False)
+        'Running Balance', digits=QTY_DIGITS, readonly=True, aggregator=False)
 
     # ---- quantities ------------------------------------------------------
     opening_qty = fields.Float('Opening Qty', digits=QTY_DIGITS, readonly=True)
@@ -73,22 +73,26 @@ class InventoryLedgerLine(models.TransientModel):
     closing_qty = fields.Float('Closing Qty', digits=QTY_DIGITS, readonly=True)
 
     # ---- valuation -------------------------------------------------------
-    unit_cost = fields.Float('Unit Cost', digits=VALUE_DIGITS, readonly=True, group_operator='avg')
+    unit_cost = fields.Float('Unit Cost', digits=VALUE_DIGITS, readonly=True, aggregator='avg')
     opening_value = fields.Float('Opening Value', digits=VALUE_DIGITS, readonly=True)
     in_value = fields.Float('IN Value', digits=VALUE_DIGITS, readonly=True)
     out_value = fields.Float('OUT Value', digits=VALUE_DIGITS, readonly=True)
     closing_value = fields.Float('Closing Value', digits=VALUE_DIGITS, readonly=True)
+    # technical: quantities of moves Odoo does not value (e.g. inter-warehouse
+    # transfers); priced at the closing average cost by the engine
+    in_qty_unvalued = fields.Float(digits=QTY_DIGITS, readonly=True)
+    out_qty_unvalued = fields.Float(digits=QTY_DIGITS, readonly=True)
 
     def init(self):
-        """Partial / composite indexes that make the ledger CTEs index-driven."""
+        """Partial index that makes the ledger CTEs index-driven.
+
+        Odoo 19 has no stock_valuation_layer table any more; valuation reads
+        stock_move directly, so the move index covers both steps.
+        """
         self.env.cr.execute("""
             CREATE INDEX IF NOT EXISTS stock_move_ledger_done_product_date_idx
                 ON stock_move (product_id, date)
              WHERE state = 'done'
-        """)
-        self.env.cr.execute("""
-            CREATE INDEX IF NOT EXISTS stock_valuation_layer_ledger_idx
-                ON stock_valuation_layer (product_id, company_id, create_date)
         """)
 
     # ---------------------------------------------------------------------

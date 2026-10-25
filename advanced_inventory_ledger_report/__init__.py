@@ -5,11 +5,11 @@ from . import controllers
 
 LEDGER_INDEXES = (
     'stock_move_ledger_done_product_date_idx',
-    'stock_valuation_layer_ledger_idx',
+    'stock_valuation_layer_ledger_idx',  # created by 16.0-18.0; dropped if a migrated DB still has it
 )
 
 
-def uninstall_hook(cr, registry):
+def uninstall_hook(env):
     """Drop the helper indexes this module created on core tables."""
     for index in LEDGER_INDEXES:
-        cr.execute('DROP INDEX IF EXISTS %s' % index)
+        env.cr.execute('DROP INDEX IF EXISTS %s' % index)

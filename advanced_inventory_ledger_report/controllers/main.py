@@ -17,8 +17,7 @@ class InventoryLedgerController(http.Controller):
         if not wizard:
             raise NotFound()
         # ACL + record rule (own runs only) - raises AccessError otherwise
-        wizard.check_access_rights('read')
-        wizard.check_access_rule('read')
+        wizard.check_access('read')
         content, filename = wizard._generate_xlsx()
         return request.make_response(content, headers=[
             ('Content-Type', XLSX_MIMETYPE),

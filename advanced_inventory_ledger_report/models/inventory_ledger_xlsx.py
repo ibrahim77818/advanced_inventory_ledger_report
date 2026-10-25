@@ -4,7 +4,7 @@ import io
 import logging
 
 from odoo import _, fields, models
-from odoo.tools.misc import xlsxwriter
+import xlsxwriter  # Odoo 19 patches xlsxwriter globally; odoo.tools.misc no longer exports it
 
 _logger = logging.getLogger(__name__)
 

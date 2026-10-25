@@ -26,7 +26,7 @@
                         <field name="categ_ids" widget="many2many_tags"
                                options="{'no_create': True}" placeholder="All categories"/>
                         <field name="product_ids" widget="many2many_tags"
-                               options="{'no_create': True}" placeholder="All storable products"/>
+                               options="{'no_create': True}" placeholder="All products tracked in inventory"/>
                     </group>
                 </group>
                 <div class="alert alert-info mb-0" role="status">
